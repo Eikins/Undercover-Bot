@@ -1,0 +1,15 @@
+# Utilise une version légère et officielle de Python 3.11
+FROM python:3.11-slim
+
+# Définit le dossier de travail à l'intérieur du conteneur
+WORKDIR /app
+
+# Copie le fichier des dépendances et les installe
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copie le reste du code du bot
+COPY bot.py .
+
+# Lance le bot au démarrage du conteneur
+CMD ["python", "bot.py"]
